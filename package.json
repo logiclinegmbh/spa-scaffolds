@@ -4,6 +4,7 @@
   "description": "SPA Scaffolds",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "lint": "eslint ./**/*.ts",
     "test": "jest"
   },
   "keywords": [
@@ -20,7 +21,11 @@
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
     "jest": "^25.1.0",
+    "prettier": "^1.19.1",
     "ts-jest": "^25.2.1"
   }
 }
