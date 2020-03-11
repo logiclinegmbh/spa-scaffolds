@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "ll/angular",
+  "schematics": {
+    "angular/init": {
+      "description": "Init angular application",
+      "factory": "./init/index#init"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "spa-scaffolds",
+  "version": "0.0.0",
+  "description": "SPA Scaffolds",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^9.0.5",
+    "@angular-devkit/schematics": "^9.0.5",
+    "typescript": "~3.7.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.11.1",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1"
+  }
+}
