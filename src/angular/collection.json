@@ -2,9 +2,9 @@
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "name": "ll/angular",
   "schematics": {
-    "angular/init": {
+    "ng-new": {
       "description": "Init angular application",
-      "factory": "./init/index#init"
+      "factory": "./ng-new/index#init"
     }
   }
 }
