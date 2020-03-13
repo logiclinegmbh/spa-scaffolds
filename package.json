@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "description": "SPA Scaffolds",
   "scripts": {
-    "copy:non-ts": "copyfiles -a -u 1 -e './src/**/*.ts' './src/**/*' './dist/'",
+    "copy:non-ts": "copyfiles -a -u 1 -e 'packages/**/*.ts' 'packages/**/*' './dist/'",
     "prebuild": "rm -rf ./dist",
     "postbuild": "npm run copy:non-ts",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint ./**/*.ts --max-warnings 0",
+    "lint": "eslint packages/**/*.ts --max-warnings 0",
     "test": "jest",
     "ci-build": "npm run lint && npm run build",
-    "prettier:check": "prettier ./src/**/*.ts  --check"
+    "prettier:check": "prettier packages/**/*.ts  --check"
   },
   "keywords": [
     "schematics"

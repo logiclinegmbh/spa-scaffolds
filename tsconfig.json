@@ -12,7 +12,7 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": "src/",
+    "rootDir": "packages/",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -20,6 +20,10 @@
     "target": "es6",
     "types": ["jest", "node"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/*/files/**/*"]
+  "include": [
+    "packages/**/*"
+  ],
+  "exclude": [
+    "packages/*/files/**/*"
+  ]
 }
