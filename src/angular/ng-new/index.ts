@@ -1,8 +1,3 @@
-import { Rule, Tree } from '@angular-devkit/schematics';
+import { externalSchematic, Rule } from '@angular-devkit/schematics';
 
-export const init = (): Rule => {
-  return (tree: Tree): Tree => {
-    console.log('running schematics');
-    return tree;
-  };
-};
+export const init = (options: any): Rule => externalSchematic('@schematics/angular', 'ng-new', options);

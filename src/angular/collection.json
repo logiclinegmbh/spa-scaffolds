@@ -4,7 +4,8 @@
   "schematics": {
     "ng-new": {
       "description": "Init angular application",
-      "factory": "./ng-new/index#init"
+      "factory": "./ng-new/index#init",
+      "schema": "./ng-new/schema.json"
     }
   }
 }
