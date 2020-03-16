@@ -7,7 +7,7 @@
     "prebuild": "rm -rf ./dist",
     "postbuild": "npm run copy:non-ts",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint ./**/*.ts --max-warnings 0",
+    "lint": "eslint ./src/**/*.ts --max-warnings 0",
     "test": "jest",
     "ci-build": "npm run lint && npm run build",
     "prettier:check": "prettier ./src/**/*.ts  --check"
