@@ -4,11 +4,15 @@ import * as path from 'path';
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
-describe('spa-scaffolds', () => {
-  it('works', () => {
+describe('ng-new', () => {
+  const options = {
+    name: 'testing',
+    version: '9.0.6'
+  };
+  it('works', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-new', {}, Tree.empty());
+    const tree = await runner.runSchematicAsync('ng-new', options, Tree.empty()).toPromise();
 
-    expect(tree.files).toEqual([]);
+    expect(tree.files).toBeDefined();
   });
 });
