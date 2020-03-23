@@ -10,17 +10,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
-      - run: yarn install
-      - run: yarn ci-build
+            ${{ runner.os }}-node-
+      - run: npm ci
+      - run: npm run ci-build
   test:
     runs-on: ubuntu-latest
     steps:
@@ -28,14 +25,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
-      - run: yarn install
-      - run: yarn test
+            ${{ runner.os }}-node-
+      - run: npm ci
+      - run: npm run test
