@@ -2,11 +2,12 @@ import { Tree } from '@angular-devkit/schematics';
 import { UnitTestTree } from '@angular-devkit/schematics/testing';
 import { readJson } from '../file';
 import { PackageJson, PackageJsonDependencies } from '../model';
-import { appTemplatePath, packageJsonPath } from '../paths';
-import { addPackageJson, callRule } from '../testing';
-import { addDependencies, removeAppTemplates } from './workspace';
+import { packageJsonPath } from '../paths';
+import { addPackageJson, createSchematicTestHelpers } from '../testing';
+import { addDependencies } from './workspace';
 
 describe('Workspace', () => {
+  const testHelpers = createSchematicTestHelpers();
   let tree: UnitTestTree;
   const dependencies: PackageJsonDependencies = {
     dep1: 'version',
@@ -20,7 +21,7 @@ describe('Workspace', () => {
   describe('addDependencies', () => {
     it('should add dependencies', async () => {
       tree = new UnitTestTree(
-        await callRule(
+        await testHelpers.callRule(
           addDependencies({
             dependencies
           }),
@@ -34,7 +35,7 @@ describe('Workspace', () => {
     });
     it('should add dev dependencies', async () => {
       tree = new UnitTestTree(
-        await callRule(
+        await testHelpers.callRule(
           addDependencies({
             devDependencies: dependencies
           }),
@@ -48,7 +49,7 @@ describe('Workspace', () => {
     });
     it('should add both dependencies', async () => {
       tree = new UnitTestTree(
-        await callRule(
+        await testHelpers.callRule(
           addDependencies({
             dependencies,
             devDependencies: dependencies
@@ -63,7 +64,7 @@ describe('Workspace', () => {
     });
     it('should be idempotent', async () => {
       new UnitTestTree(
-        await callRule(
+        await testHelpers.callRule(
           addDependencies({
             dependencies
           }),
@@ -71,7 +72,7 @@ describe('Workspace', () => {
         )
       );
       tree = new UnitTestTree(
-        await callRule(
+        await testHelpers.callRule(
           addDependencies({
             dependencies
           }),
@@ -82,20 +83,6 @@ describe('Workspace', () => {
 
       expect(packageJson.dependencies).toEqual(dependencies);
       expect(packageJson.devDependencies).toEqual({});
-    });
-  });
-
-  describe('removeAppTemplates', () => {
-    const textFile = 'Testproject';
-    const appTemplateFilePath = `${appTemplatePath}/file.txt`;
-    beforeEach(() => {
-      tree.create(appTemplateFilePath, textFile);
-    });
-    it('should remove app templates in case exist', async () => {
-      expect(tree.exists(appTemplateFilePath)).toEqual(true);
-      tree = new UnitTestTree(await callRule(removeAppTemplates(), tree));
-
-      expect(tree.exists(appTemplateFilePath)).toEqual(false);
     });
   });
 });
